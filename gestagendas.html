@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --main-green: #2E7D32;
+            --light-gray: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--main-green);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+
+        .top-bar .logo-img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info i {
+            margin-left: 10px;
+            color: white;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            min-height: 100vh;
+            border-right: 1px solid #e0e0e0;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+
+        .nav-link {
+            color: var(--main-green);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            background-color: #e0e0e0;
+        }
+
+        .nav-link i {
+            width: 25px;
+            color: var(--main-green);
+        }
+
+        .nav-link span {
+            margin-left: 10px;
+            color: var(--main-green);
+        }
+
+        .sub-menu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .sub-menu a {
+            font-weight: normal;
+            color: var(--main-green);
+        }
+
+        .sub-menu a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            padding-top: 80px;
+        }
+
+        .create-button {
+            background: var(--main-green);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            float: right;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .events-table {
+            width: 100%;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .events-header {
+            background: var(--main-green);
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination span {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .pagination .active {
+            background: var(--main-green);
+            color: white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="d-flex align-items-center">
+            <img src="logo.png" alt="Logo" class="logo-img">
+            <span>Sistema de agendamiento territorial en linea</span>
+        </div>
+        <div class="user-info">
+            Juan Hernandez
+            <i class="fas fa-user"></i>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <a href="#" class="nav-link" id="toggle-users">
+                <i class="fas fa-users"></i>
+                <span>Usuarios</span>
+            </a>
+            <div class="sub-menu" id="user-submenu">
+                <a href="gestusu.html" class="nav-link">Gestionar usuarios</a>
+                <a href="gestrol.html" class="nav-link">Gestionar roles</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-agendas">
+                <i class="far fa-calendar-alt"></i>
+                <span>Agendas</span>
+            </a>
+            <div class="sub-menu" id="agenda-submenu">
+                <a href="#" class="nav-link">Gestionar agendas</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-problematicas">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Problemáticas y Compromisos</span>
+            </a>
+            <div class="sub-menu" id="problematicas-submenu">
+                <a href="gestproblematicas.html" class="nav-link">Gestionar problemáticas</a>
+                <a href="#" class="nav-link">Gestionar compromisos</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-intervenciones">
+                <i class="fas fa-hands-helping"></i>
+                <span>Intervenciones</span>
+            </a>
+            <div class="sub-menu" id="intervenciones-submenu">
+                <a href="#" class="nav-link">Gestionar intervenciones</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-reportes">
+                <i class="far fa-file-alt"></i>
+                <span>Reportes</span>
+            </a>
+            <div class="sub-menu" id="reportes-submenu">
+                <a href="#" class="nav-link">Exportar reportes</a>
+                <a href="#" class="nav-link">Resumen de temáticas</a>
+                <a href="#" class="nav-link">Generar reporte compromisos</a>
+                <a href="#" class="nav-link">Generar reporte de intervenciones</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-mapa">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Mapa</span>
+            </a>
+            <div class="sub-menu" id="mapa-submenu">
+                <a href="#" class="nav-link">Gestionar mapa</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-configuracion">
+                <i class="fas fa-cog"></i>
+                <span>Configuración</span>
+            </a>
+            <div class="sub-menu" id="configuracion-submenu">
+                <a href="#" class="nav-link">Configuración general</a>
+                <a href="#" class="nav-link">Dependencias</a>
+                <a href="#" class="nav-link">Temáticas</a>
+                <a href="#" class="nav-link">Ciudad</a>
+                <a href="#" class="nav-link">País</a>
+                <a href="#" class="nav-link">Departamento</a>
+            </div>
+
+            <a href="#" class="nav-link" id="toggle-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar sesión</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <button class="create-button">Crear evento</button>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar eventos..." onkeyup="searchEvents()">
+        </div>
+
+        <div class="events-table">
+            <div class="events-header">Listado eventos</div>
+            <table id="eventsTable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Encargado</th>
+                        <th>Fecha</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Reunión de Planeación Estratégica</td>
+                        <td>Juan Martinez</td>
+                        <td>20-03-24</td>
+                        <td>10:00 am</td>
+                        <td>Sala de juntas, Bogotá</td>
+                    </tr>
+                    <tr>
+                        <td>Taller de Capacitación</td>
+                        <td>Ana Gómez</td>
+                        <td>10-04-24</td>
+                        <td>3:00 pm</td>
+                        <td>Auditorio principal, Medellín</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span>1</span>
+            <span class="active">2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>></span>
+            <span>>></span>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const submenu = this.nextElementSibling;
+                if (submenu) {
+                    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
