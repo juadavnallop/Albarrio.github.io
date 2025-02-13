@@ -203,6 +203,47 @@
             background: #f44336;
             color: white;
         }
+        .status {
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 100px; /* Ancho mínimo para que todos los estados tengan el mismo tamaño */
+}
+
+.status-active {
+    background: #4CAF50; /* Verde */
+    color: white;
+}
+
+.status-inactive {
+    background: #f44336; /* Rojo */
+    color: white;
+}
+
+.status-finalized {
+    background: #2196F3; /* Azul */
+    color: white;
+}
+
+/* Estilo para el botón de Finalizado */
+.finalized-button {
+    background: #2196F3; /* Azul */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.finalized-button:hover {
+    background: #1976D2; /* Azul más oscuro al pasar el mouse */
+    opacity: 0.9;
+}
     </style>
 </head>
 <body>
@@ -224,8 +265,8 @@
                 <span>Usuarios</span>
             </a>
             <div class="sub-menu" id="user-submenu">
-                <a href="#" class="nav-link">Gestionar usuarios</a>
-                <a href="#" class="nav-link">Gestionar roles</a>
+                <a href="gestusu.html" class="nav-link">Gestionar usuarios</a>
+                <a href="gestrol.html" class="nav-link">Gestionar roles</a>
             </div>
 
             <a href="#" class="nav-link" id="toggle-agendas">
@@ -233,7 +274,7 @@
                 <span>Agendas</span>
             </a>
             <div class="sub-menu" id="agenda-submenu">
-                <a href="#" class="nav-link">Gestionar agendas</a>
+                <a href="gestagendas.html" class="nav-link">Gestionar agendas</a>
             </div>
 
             <a href="#" class="nav-link" id="toggle-problematicas">
@@ -241,8 +282,7 @@
                 <span>Problemáticas y Compromisos</span>
             </a>
             <div class="sub-menu" id="problematicas-submenu">
-                <a href="#" class="nav-link">Gestionar problemáticas</a>
-                <a href="#" class="nav-link">Gestionar compromisos</a>
+                <a href="gestproblematicas.html" class="nav-link">Gestionar problemáticas</a>
             </div>
 
             <a href="#" class="nav-link" id="toggle-intervenciones">
@@ -250,7 +290,7 @@
                 <span>Intervenciones</span>
             </a>
             <div class="sub-menu" id="intervenciones-submenu">
-                <a href="#" class="nav-link">Gestionar intervenciones</a>
+                <a href="gestintervenciones.html" class="nav-link">Gestionar intervenciones</a>
             </div>
 
             <a href="#" class="nav-link" id="toggle-reportes">
@@ -321,16 +361,22 @@
                         <td>Incremento de actividades ilegales que afectan la biodiversidad y el equilibrio ecológico.</td>
                         <td><i class="fas fa-edit"></i></td>
                         <td><i class="fas fa-eye"></i></td>
-                        <td><span class="status status-active">Activo</span></td>
+                        <td><span class="status status-inactive">Sin ejecutar</span></td>
                     </tr>
                     <tr>
                         <td>Contaminación de fuentes hídricas</td>
                         <td>Vertimientos industriales y domésticos que deterioran la calidad del agua en los ríos.</td>
                         <td><i class="fas fa-edit"></i></td>
                         <td><i class="fas fa-eye"></i></td>
-                        <td><span class="status status-inactive">Inactivo</span></td>
+                        <td><span class="status status-active">En ejecución</span></td>
                     </tr>
-                    <!-- Additional rows would go here -->
+                    <tr>
+                        <td>Falta de infraestructura en zonas rurales</td>
+                        <td>Déficit de vías de acceso y servicios básicos en comunidades rurales.</td>
+                        <td><i class="fas fa-edit"></i></td>
+                        <td><i class="fas fa-eye"></i></td>
+                        <td><span class="status status-finalized">Finalizado</span></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

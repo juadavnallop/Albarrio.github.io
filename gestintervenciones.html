@@ -107,105 +107,76 @@
         }
 
         .create-button {
-            background: var(--main-green);
+            background-color: #2e7d32;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             float: right;
             margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            width: calc(100% - 22px);
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .events-table {
-            width: 100%;
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .events-header {
-            background: var(--main-green);
-            color: white;
-            padding: 15px;
-            font-size: 1.2em;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: white;
         }
 
-        th, td {
+        th {
+            background-color: #2e7d32;
+            color: white;
             padding: 12px;
             text-align: left;
+        }
+
+        td {
+            padding: 12px;
             border-bottom: 1px solid #ddd;
         }
 
         .pagination {
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 20px;
         }
 
-        .pagination span {
+        .page-item {
             padding: 5px 10px;
+            border: 1px solid #ddd;
             cursor: pointer;
         }
 
-        .pagination .active {
-            background: var(--main-green);
+        .page-item.active {
+            background-color: #2e7d32;
             color: white;
-            border-radius: 50%;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
         }
 
         .edit-button, .delete-button {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 5px;
-    transition: background-color 0.3s;
-}
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--main-green);
+            font-size: 16px;
+            transition: color 0.3s;
+        }
 
-.edit-button {
-    background: #2196F3; /* Azul */
-    color: white;
-}
+        .edit-button:hover {
+            color: #1b5e20; /* Verde más oscuro */
+        }
 
-.edit-button:hover {
-    background: #1976D2; /* Azul más oscuro */
-}
-
-.delete-button {
-    background: #f44336; /* Rojo */
-    color: white;
-}
-
-.delete-button:hover {
-    background: #d32f2f; /* Rojo más oscuro */
-}
-
-/* Ajustes para los íconos dentro de los botones */
-.edit-button i, .delete-button i {
-    margin-right: 5px;
-}
+        .delete-button:hover {
+            color: #d32f2f; /* Rojo */
+        }
     </style>
 </head>
 <body>
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="d-flex align-items-center">
             <img src="logo.png" alt="Logo" class="logo-img">
@@ -217,6 +188,7 @@
         </div>
     </div>
 
+    <!-- Sidebar -->
     <div class="sidebar">
         <nav>
             <a href="#" class="nav-link" id="toggle-users">
@@ -233,7 +205,7 @@
                 <span>Agendas</span>
             </a>
             <div class="sub-menu" id="agenda-submenu">
-                <a href="#" class="nav-link">Gestionar agendas</a>
+                <a href="gestagendas.html" class="nav-link">Gestionar agendas</a>
             </div>
 
             <a href="#" class="nav-link" id="toggle-problematicas">
@@ -291,65 +263,73 @@
         </nav>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
-        <button class="create-button">Crear evento</button>
-    
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Buscar eventos..." onkeyup="searchEvents()">
-        </div>
-    
-        <div class="events-table">
-            <div class="events-header">Listado eventos</div>
-            <table id="eventsTable">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Encargado</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Dirección</th>
-                        <th>Acciones</th> <!-- Nueva columna para acciones -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Reunión de Planeación Estratégica</td>
-                        <td>Juan Martinez</td>
-                        <td>20-03-24</td>
-                        <td>10:00 am</td>
-                        <td>Sala de juntas, Bogotá</td>
-                        <td>
-                            <button class="edit-button"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="delete-button"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Taller de Capacitación</td>
-                        <td>Ana Gómez</td>
-                        <td>10-04-24</td>
-                        <td>3:00 pm</td>
-                        <td>Auditorio principal, Medellín</td>
-                        <td>
-                            <button class="edit-button"><i class="fas fa-edit"></i> Editar</button>
-                            <button class="delete-button"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    
+        <button class="create-button">Crear intervención</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Compromiso asociado</th>
+                    <th>Fecha de registro</th>
+                    <th>Ubicación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Reparación de Infraestructura Escolar</td>
+                    <td>Reforestación de áreas criticas</td>
+                    <td>20-03-24</td>
+                    <td>Sala de juntas, Bog</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="edit-button" onclick="editIntervention(1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-button" onclick="deleteIntervention(1)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jornada de Limpieza de Rios</td>
+                    <td>Implementación de plantas de tratamiento</td>
+                    <td>10-04-24</td>
+                    <td>Auditorio principal, M</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="edit-button" onclick="editIntervention(2)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-button" onclick="deleteIntervention(2)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Repite para las demás filas -->
+            </tbody>
+        </table>
         <div class="pagination">
-            <span>1</span>
-            <span class="active">2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>></span>
-            <span>>></span>
+            <span class="page-item"><<</span>
+            <span class="page-item"><</span>
+            <span class="page-item">1</span>
+            <span class="page-item active">2</span>
+            <span class="page-item">3</span>
+            <span class="page-item">4</span>
+            <span class="page-item">5</span>
+            <span class="page-item">></span>
+            <span class="page-item">>></span>
         </div>
     </div>
 
     <script>
+        // Script para manejar los menús desplegables
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function() {
                 const submenu = this.nextElementSibling;
@@ -358,6 +338,19 @@
                 }
             });
         });
+
+        // Funciones para editar y eliminar intervenciones
+        function editIntervention(id) {
+            alert(`Editar intervención con ID: ${id}`);
+            // Aquí puedes agregar la lógica para editar la intervención
+        }
+
+        function deleteIntervention(id) {
+            if (confirm(`¿Estás seguro de eliminar la intervención con ID: ${id}?`)) {
+                alert(`Intervención con ID: ${id} eliminada`);
+                // Aquí puedes agregar la lógica para eliminar la intervención
+            }
+        }
     </script>
 </body>
 </html>
